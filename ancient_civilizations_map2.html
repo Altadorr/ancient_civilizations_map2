@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ancient Civilizations & Celestial Connections</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body { margin: 0; padding: 0; font-family: 'Georgia', serif; background-color: #121212; color: #eee; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    .mapboxgl-popup-content {
+      background: #1e1e1e;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 300px;
+    }
+    .popup-img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    em {
+      display: block;
+      font-size: 14px;
+      margin-top: 6px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN_HERE';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/dark-v10',
+  center: [0, 20],
+  zoom: 1.4
+});
+
+const sites = [
+  {
+    coordinates: [31.1342, 29.9792],
+    title: "Giza Plateau, Egypt",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
+    description: "Aligned with Orion's Belt.",
+    quote: "The ancients encoded celestial wisdom into stone."
+  },
+  {
+    coordinates: [38.9226, 37.2231],
+    title: "Göbekli Tepe, Turkey",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/5a/G%C3%B6bekli_Tepe_1.jpg",
+    description: "Predates agriculture, possibly aligned to Sirius.",
+    quote: "A fingerprint of a lost civilization."
+  },
+  {
+    coordinates: [-104.527, 36.059],
+    title: "Chaco Canyon, USA",
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Pueblo_Bonito_from_above.jpg",
+    description: "Solar and lunar alignments used in ritual calendars.",
+    quote: "The stars guided the rhythms of their lives."
+  },
+  {
+    coordinates: [-89.771, 20.359],
+    title: "Uxmal, Mexico",
+    image: "https://upload.wikimedia.org/wikipedia/commons/6/67/Uxmal_Pyramid_of_the_Magician.jpg",
+    description: "Maya observatories tracking Venus.",
+    quote: "Venus was a god, a guide in the sky."
+  },
+  {
+    coordinates: [-72.545, -13.163],
+    title: "Machu Picchu, Peru",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Machu_Picchu%2C_Peru.jpg",
+    description: "Solar alignments and high-altitude cosmic rituals.",
+    quote: "Built as a stairway to the heavens."
+  },
+  {
+    coordinates: [-6.4756, 53.6947],
+    title: "Newgrange, Ireland",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Newgrange_Entrance_Slab_Artwork_2013.jpg",
+    description: "Aligned with the winter solstice sunrise.",
+    quote: "Light reborn from the womb of the Earth."
+  },
+  {
+    coordinates: [103.866986, 13.412469],
+    title: "Angkor Wat, Cambodia",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Angkor_Wat_temple.jpg",
+    description: "Temple mirrors the constellation Draco.",
+    quote: "Heaven’s reflection on Earth."
+  },
+  {
+    coordinates: [-1.8262, 51.1789],
+    title: "Stonehenge, England",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Stonehenge2007_07_30.jpg",
+    description: "Aligned with solstices. Possibly a gateway of time.",
+    quote: "Stones that mark the passage of eternity."
+  }
+];
+
+sites.forEach(site => {
+  const html = `
+    <img src="${site.image}" class="popup-img" alt="${site.title} illustration" />
+    <h3>${site.title}</h3>
+    <p>${site.description}</p>
+    <em>“${site.quote}”</em>
+  `;
+  new mapboxgl.Marker()
+    .setLngLat(site.coordinates)
+    .setPopup(new mapboxgl.Popup().setHTML(html))
+    .addTo(map);
+});
+</script>
+</body>
+</html>
